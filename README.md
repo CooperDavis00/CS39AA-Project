@@ -1,1 +1,2 @@
 # CS39AA-Project
+In this repository, I am working on creating a music recommendation system using the spotify api. I am using a few different datasets I found on kaggle, these are different datasets with song data some using genre data along with the songs. I am also going to be downloading my own json file of my liked songs from my spotify profile to use as training data, this way my program will be able to predict if i like or dislike other songs. 
