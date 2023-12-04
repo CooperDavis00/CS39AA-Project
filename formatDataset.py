@@ -19,12 +19,12 @@ updated_rows = []
 for index, row in df.iterrows():
     track_name = row['trackName']
     artist_names = row['artistName'].split(', ')  # Assuming artistName are separated by a comma and space
-    # track_uri = row['Track URI']
-    track_id = row['id']
+    track_uri = row['uri']
+    # track_id = row['id']
 
     # Get track details, including artistName, using the Spotify API
     try:
-        track_details = sp.track(track_id)
+        track_details = sp.track(track_uri)
         artistName = track_details['artistName']
 
         # Extract genres for each artist (assuming only one genre per artist)
@@ -38,7 +38,7 @@ for index, row in df.iterrows():
         # Create a dictionary for the current track's information
         track_info = {'trackName': track_name,
                     'artistName': ', '.join(artist_names),
-                    'Genre': ', '.join(genres)}
+                    'genre': ', '.join(genres)}
 
         # Append the track information to the list
         updated_rows.append(track_info)
@@ -48,16 +48,16 @@ for index, row in df.iterrows():
         print(f"Error for track {track_name}: {e}")
         track_info = {'trackName': track_name,
                     'artistName': ', '.join(artist_names),
-                    'Genre': 'N/A'}
+                    'genre': 'N/A'}
 
         # Append the track information to the list
         updated_rows.append(track_info)
 
 # Create the DataFrame from the list of rows
-updated_df = pd.DataFrame(updated_rows, columns=['trackName', 'artistName', 'Genre'])
+updated_df = pd.DataFrame(updated_rows)
 
 # Save the updated DataFrame to a new CSV file
-output_csv_file_path = 'song_dataset.csv'
+output_csv_file_path = 'other_songs_dataset.csv'
 updated_df.to_csv(output_csv_file_path, index=False, encoding='utf-8')
 
 print(f"Updated dataset written to: {output_csv_file_path}")

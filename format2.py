@@ -11,7 +11,7 @@ SPOTIPY_CLIENT_SECRET = '584fc966136e4e6989b01d982d7e8ab5'
 sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id='21c51f8e6f784d7fadc41f84acf80ab5', client_secret='584fc966136e4e6989b01d982d7e8ab5'))
 
 # Load your dataset from CSV using Pandas
-df = pd.read_csv('dataset.csv')
+df = pd.read_csv('Spotify_Song_Attributes.csv')
 
 # Function to fetch genre information for a track
 def fetch_genre(track_id):
